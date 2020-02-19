@@ -11,13 +11,11 @@ class User < ApplicationRecord
     has_secure_password
 
     def User.digest(string)
-        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-        BCrypt::Engine.cost
-        BCrypt::Password.create(string, cost: cost)
+        Digest::SHA1.hexdigest string.to_s
     end
 
     def User.new_token
-        Secure.Randome.urlsafe_base64
+        SecureRandom.urlsafe_base64
     end
 
     def remember
