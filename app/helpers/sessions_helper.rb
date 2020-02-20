@@ -20,4 +20,20 @@ module SessionsHelper
             end
         end
     end
+    
+    def forget
+      update_attribute(:remember_digest,nil)
+    end
+
+    def forget(user)
+        user.forget
+        cookies.delete(:user_id)
+        cookies.delete(:remember_token)
+    end
+
+    def sign_out(user)
+      forget(current_user)
+      session.delete(:user_id)
+      @current = nil
+    end
 end
