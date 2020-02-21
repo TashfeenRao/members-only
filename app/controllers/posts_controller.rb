@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    render html: 'hello world'
+    @posts = Post.all
   end
 
   private

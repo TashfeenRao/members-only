@@ -3,6 +3,10 @@ module SessionsHelper
         session[:user_id] = user.id
     end
 
+    def logged_in
+        !current_user.nil?
+    end
+
     def check_log_in
         if current_user.nil?
             flash[:danger] = "You need to login first."

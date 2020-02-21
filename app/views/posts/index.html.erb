@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<h2>Vertical List bbc news panel</h2>
+
+<dl class="dl-unsur">
+  <% @posts.each do |post| %>
+  <dd>
+        <a href="/turkce/haberler-turkiye-38878761" class="pull-left">
+            <h2 class="pull-right"><%= post.id %></h2>
+            <div class="pull-left" ><%= post.title %></div>
+        </a>
+        <p class="small pull-left" >
+        <% if logged_in %>
+          <%= post.user.name %>
+        <% end %>
+        <%= post.body %></p>
+    </dd>
+  <% end %>
+</dl>
+
+
+	</div>
+</div>
