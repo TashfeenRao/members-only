@@ -8,10 +8,9 @@ module SessionsHelper
   end
 
   def check_log_in
-    if current_user.nil?
+    return nil unless current_user.nil?
       flash[:danger] = 'You need to login first.'
       redirect_to signin_path
-    end
   end
 
   def remember(user)
@@ -37,7 +36,7 @@ module SessionsHelper
   end
 
   def forget(user)
-    user.forget?
+    user.forget
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
