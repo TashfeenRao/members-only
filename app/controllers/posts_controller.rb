@@ -11,7 +11,6 @@ class PostsController < ApplicationController
     if @post.save
       flash[:success] = "Successfully create post."
       redirect_to posts_url
-
     else
       render 'new'
     end

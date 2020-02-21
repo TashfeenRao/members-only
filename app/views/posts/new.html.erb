@@ -1,24 +1,7 @@
-<h1>Posts#new</h1>
-<div class="row" style="margin-left : 1rem">
-<button class="btn btn-primary pull-left" style="margin-top: 1rem">
- <%=link_to "Show All Posts", posts_path %>
-</button>
-</div>
-
-<%# <form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form> %>
-
-
-<%= form_for(@post) do |p| %>
 <div class="col-md-6">
+<h1>Create Your Post</h1>
+<%= form_for(@post) do |p| %>
+<% render 'shared/error_messages' %>
   <div class="form-group">
       <%= p.label :title %>
       <%= p.text_field :title, class: 'form-control' %>
@@ -27,7 +10,12 @@
       <%= p.label :body %>
       <%= p.text_area :body, class: 'form-control' %>
     </div>
-    <%= p.submit "Create New Post", class: "btn btn-primary" %>
+    <%= p.submit "Post", class: "btn btn-primary" %>
   </div>
-
+</div>
 <% end %>
+<div class="col-md-6" style="margin-top:1rem">
+<button class="btn btn-primary pull-left">
+ <%=link_to "Show All Posts", posts_path %>
+</button>
+</div>
