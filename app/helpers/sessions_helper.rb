@@ -32,12 +32,12 @@ module SessionsHelper
     end
   end
 
-  def forget
+  def forget?
     update_attribute(:remember_digest, nil)
   end
 
   def forget(user)
-    user.forget
+    user.forget?
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
