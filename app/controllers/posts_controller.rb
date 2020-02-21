@@ -1,12 +1,16 @@
 class PostsController < ApplicationController
+  before_action :check_log_in, only: [:new,:create]
+
   def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    @post.user_id =
+    @post.user_id = current_user.id
     if @post.save
+      flash[:success] = "Successfully create post."
+      redirect_to posts_url
 
     else
       render 'new'
@@ -16,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def index
-
+    render html: 'hello world'
   end
 
   private

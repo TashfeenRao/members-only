@@ -3,6 +3,13 @@ module SessionsHelper
         session[:user_id] = user.id
     end
 
+    def check_log_in
+        if current_user.nil?
+            flash[:danger] = "You need to login first."
+            redirect_to signin_path
+        end
+    end
+
     def remember(user)
         user.remember
         cookies.permanent.signed[:user_id] = user.id
@@ -20,7 +27,7 @@ module SessionsHelper
             end
         end
     end
-    
+
     def forget
       update_attribute(:remember_digest,nil)
     end
