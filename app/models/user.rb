@@ -9,6 +9,7 @@ class User < ApplicationRecord
                uniqueness: {case_sensitive: false}
     validates :password, length: {minimum: 6}, presence: true
     has_secure_password
+    has_many :posts
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -19,7 +20,7 @@ class User < ApplicationRecord
     def User.new_token
         SecureRandom.urlsafe_base64
     end
-    
+
     def forget
         update_attribute(:remember_digest,nil)
       end

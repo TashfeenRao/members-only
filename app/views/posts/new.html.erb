@@ -1,0 +1,27 @@
+<h1>Posts#new</h1>
+<%# <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form> %>
+
+
+<%= form_for(@post) do |p| %>
+<div class="col-md-6">
+  <div class="form-group">
+      <%= p.label :title %>
+      <%= p.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= p.label :body %>
+      <%= p.text_area :body, class: 'form-control' %>
+    </div>
+    <%= p.submit "Create New Post", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
