@@ -8,7 +8,7 @@ class UsersSigninTest < ActionDispatch::IntegrationTest
   test 'login in with invalid info' do
     get signin_path
     assert_template 'sessions/new'
-    post signin_path, params:{session: {email: "", password: ""}}
+    post signin_path, params: { session: { email: '', password: '' } }
     assert_template 'sessions/new'
     assert_not flash.empty?
     get signin_path

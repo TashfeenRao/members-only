@@ -1,11 +1,10 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     # debugger
-    if @user && @user.authenticate(params[:session][:password])
+    if @user&.authenticate(params[:session][:password])
       log_in @user
       current_user
       remember @user
@@ -17,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-   sign_out @user
-   redirect_to signin_path
+    sign_out @user
+    redirect_to signin_path
   end
 end

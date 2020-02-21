@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :check_log_in, only: [:new,:create]
+  before_action :check_log_in, only: %i[new create]
 
   def new
     @post = Post.new
@@ -9,13 +9,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:success] = "Successfully create post."
+      flash[:success] = 'Successfully create post.'
       redirect_to posts_url
     else
       render 'new'
     end
-
-
   end
 
   def index
@@ -23,7 +21,8 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title,:body,:user_id)
-    end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :user_id)
+  end
 end
