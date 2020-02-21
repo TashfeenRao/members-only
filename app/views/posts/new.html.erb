@@ -1,7 +1,7 @@
 <div class="col-md-6">
 <h1>Create Your Post</h1>
 <%= form_for(@post) do |p| %>
-<% render 'shared/error_messages' %>
+<%= render 'shared/error_messages' %>
   <div class="form-group">
       <%= p.label :title %>
       <%= p.text_field :title, class: 'form-control' %>
