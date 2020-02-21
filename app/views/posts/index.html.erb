@@ -1,11 +1,18 @@
 <div class="container">
+  <button class="btn btn-primary pull-right" style="margin-top: 1rem">
+    <% if !logged_in %>
+     <%=link_to "Sign IN", signin_path , method: :get, class:"fadeIn fourth" %>
+    <% else %>
+    <%=link_to "Sign OUT", signout_path , method: :delete, class:"fadeIn fourth" %>
+    <% end %>
+  </button>
 	<div class="row">
-		<h2>Vertical List bbc news panel</h2>
+		<h2>News</h2>
 
 <dl class="dl-unsur">
   <% @posts.each do |post| %>
   <dd>
-        <a href="/turkce/haberler-turkiye-38878761" class="pull-left">
+        <a class="pull-left">
             <h2 class="pull-right"><%= post.id %></h2>
             <div class="pull-left" ><%= post.title %></div>
         </a>
