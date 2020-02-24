@@ -12,7 +12,6 @@ module SessionsHelper
 
   def check_log_in
     return nil unless retriving_current_user.nil? || setting_current_user.nil?
-
     flash[:danger] = 'You need to login first.'
     redirect_to signin_path
   end
@@ -37,7 +36,7 @@ module SessionsHelper
       end
     end
   end
-  
+
   def current_user
     if (user_id = session[:user_id])
       @current ||= User.find_by(id: user_id)
@@ -48,6 +47,7 @@ module SessionsHelper
       end
     end
   end
+
   def forget?
     update_attribute(:remember_digest, nil)
   end
