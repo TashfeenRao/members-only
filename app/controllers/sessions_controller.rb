@@ -3,12 +3,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
-    # debugger
-    if @user&.authenticate(params[:session][:password])
-      log_in @user
-      current_user
-      remember @user
-      redirect_to posts_new_url
+    if @user && @user.authenticate(params[:session][:password])
+      sign_in @user
+      redirect_to new_post_path
     else
       flash.now[:danger] = 'invalid email/password combination'
       render 'new'
