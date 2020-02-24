@@ -24,14 +24,16 @@ module SessionsHelper
   end
 
   def retriving_current_user
-    return unless user_id = session[:user_id]
-      @current ||= User.find_by(id: user_id)
+    return unless (user_id = session[:user_id])
+
+    @retriving_current_user ||= User.find_by(id: user_id)
   end
 
   def setting_current_user
-    return unless user_id = cookies.signed[:user_id]
-      user = User.find_by(id: user_id)
-      @current = user if user&.authenticated(cookies[:remember_token])
+    return unless (user_id = cookies.signed[:user_id])
+
+    user = User.find_by(id: user_id)
+    @current = user if user&.authenticated(cookies[:remember_token])
   end
 
   def current_user
