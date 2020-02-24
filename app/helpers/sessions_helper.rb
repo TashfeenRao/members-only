@@ -12,6 +12,7 @@ module SessionsHelper
 
   def check_log_in
     return nil unless retriving_current_user.nil? || setting_current_user.nil?
+
     flash[:danger] = 'You need to login first.'
     redirect_to signin_path
   end
@@ -31,9 +32,7 @@ module SessionsHelper
   def setting_current_user
     if (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated(cookies[:remember_token])
-        @current = user
-      end
+      @current = user if user&.authenticated(cookies[:remember_token])
     end
   end
 
@@ -42,9 +41,7 @@ module SessionsHelper
       @current ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated(cookies[:remember_token])
-        @current = user
-      end
+      @current = user if user&.authenticated(cookies[:remember_token])
     end
   end
 
