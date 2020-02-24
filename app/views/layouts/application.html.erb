@@ -10,9 +10,23 @@
   </head>
 
   <body>
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+    <div class="navbar-header" style="padding : 1rem">
+            <% if !logged_in %>
+              <%=link_to "Sign IN", signin_path , class:"fadeIn" %>
+            <% else %>
+              <%=link_to "Sign OUT", signout_path , method: :delete, class:"fadeIn" %>
+            <% end %>
+            </div>
+            </div>
+      </nav>
     <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
     <%= yield %>
+
+
+  </button>
   </body>
 </html>

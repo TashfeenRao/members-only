@@ -1,11 +1,4 @@
 <div class="container">
-  <button class="btn btn-primary pull-right" style="margin-top: 1rem">
-    <% if !logged_in %>
-     <%=link_to "Sign IN", signin_path , class:"fadeIn fourth" %>
-    <% else %>
-    <%=link_to "Sign OUT", signout_path , method: :delete, class:"fadeIn fourth" %>
-    <% end %>
-  </button>
 	<div class="row">
 <dl class="dl-unsur">
   <% @posts.each do |post| %>
