@@ -1,10 +1,13 @@
 <div class="container">
+<button class="btn btn-primary pull-right">
+  <%=link_to "Create Post", new_post_path %>
+</button>
 	<div class="row">
 <dl class="dl-unsur">
   <% @posts.each do |post| %>
   <dd>
           <% if logged_in %>
-      <h1 class="pull-left">Author: <%= post.user.name %> </h2>
+      <h4 class="pull-left">Author: <%= post.user.name %> </h4>
           <% end %>
   </dd>
   <dd>
