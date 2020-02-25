@@ -11,8 +11,9 @@ module SessionsHelper
 
   def check_log_in
     return unless current_user.nil?
-      flash[:danger] = 'You need to login first.'
-      redirect_to signin_path
+
+    flash[:danger] = 'You need to login first.'
+    redirect_to signin_path
   end
 
   def current_user
