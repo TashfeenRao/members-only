@@ -1,4 +1,7 @@
 <div class="container">
+<button class="btn btn-primary pull-right">
+  <%=link_to "Create Post", new_post_path %>
+</button>
 	<div class="row">
 <dl class="dl-unsur">
   <% @posts.each do |post| %>
