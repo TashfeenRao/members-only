@@ -1,9 +1,8 @@
 module SessionsHelper
   def sign_in(user)
-    session[:user_id] = user.id
-    remember user
-    retriving_current_user
-    setting_current_user
+    user.remember
+    cookies.permanent[:remember_token] = user.remember_token
+    @current_user = user
   end
 
   def logged_in
@@ -11,53 +10,22 @@ module SessionsHelper
   end
 
   def check_log_in
-    return nil unless retriving_current_user.nil? || setting_current_user.nil?
-
-    flash[:danger] = 'You need to login first.'
-    redirect_to signin_path
-  end
-
-  def remember(user)
-    user.remember
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
-  end
-
-  def retriving_current_user
-    return unless (user_id = session[:user_id])
-
-    @retriving_current_user ||= User.find_by(id: user_id)
-  end
-
-  def setting_current_user
-    return unless (user_id = cookies.signed[:user_id])
-
-    user = User.find_by(id: user_id)
-    @current = user if user&.authenticated(cookies[:remember_token])
+    return unless current_user.nil?
+      flash[:danger] = 'You need to login first.'
+      redirect_to signin_path
   end
 
   def current_user
-    if (user_id = session[:user_id])
-      @current ||= User.find_by(id: user_id)
-    elsif (user_id = cookies.signed[:user_id])
-      user = User.find_by(id: user_id)
-      @current = user if user&.authenticated(cookies[:remember_token])
-    end
+    @current_user ||= User.find_by(remember_digest: User.digest(cookies[:remember_token]))
   end
 
-  def forget?
-    update_attribute(:remember_digest, nil)
-  end
-
-  def forget(user)
-    user.forget
-    cookies.delete(:user_id)
-    cookies.delete(:remember_token)
+  def current_user=(user)
+    @current_user = user
   end
 
   def sign_out(_user)
-    forget(current_user)
-    session.delete(:user_id)
-    @current = nil
+    session[:user_id] = nil
+    cookies[:remember_token] = nil
+    @current_user = nil
   end
 end
