@@ -1,0 +1,17 @@
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img src="https://cdn3.iconfinder.com/data/icons/minio-locks-bold/100/Minio_Locks_and_Security_Bold-50-512.png" id="icon" alt="User Icon"  />
+    </div>
+    <%= form_for(:session, url: signin_path) do |f| %>
+      <%= f.email_field :email, id: 'login', class: 'fadeIn second', placeholder: 'email'%>
+       <%= f.password_field :password, id: 'password', class: 'fadeIn third', placeholder: 'password'%>
+       <%= f.submit "Sign In", class:'fadeIn fourth' %>
+    <% end %>
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>

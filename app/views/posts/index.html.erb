@@ -1,0 +1,30 @@
+<div class="container">
+<button class="btn btn-primary pull-right">
+  <%=link_to "Create Post", new_post_path %>
+</button>
+	<div class="row">
+<dl class="dl-unsur">
+  <% @posts.each do |post| %>
+  <dd>
+          <% if logged_in %>
+      <h4 class="pull-left">Author: <%= post.user.name %> </h4>
+          <% end %>
+  </dd>
+  <dd>
+        <a class="pull-left">
+            <h2 class="pull-right"><%= post.id %></h2>
+            <div class="pull-left" ><%= post.title %></div>
+            <div class="pull-left" ></div>
+        </a>
+        <p class="small pull-left" >
+
+        <%= post.body %></p>
+               <p class="small pull-left" >
+        <%= post.created_at %> </p>
+    </dd>
+  <% end %>
+</dl>
+
+
+	</div>
+</div>

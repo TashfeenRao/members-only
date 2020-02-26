@@ -1,0 +1,18 @@
+<div class="col-md-6">
+<h1>Create Your Post</h1>
+<%= form_for(@post) do |p| %>
+<%= render 'shared/error_messages' %>
+  <div class="form-group">
+      <%= p.label :title %>
+      <%= p.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= p.label :body %>
+      <%= p.text_area :body, class: 'form-control' %>
+    </div>
+    <%= p.submit "Post", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+<div class="col-md-6" style="margin-top:1rem">
+</div>
