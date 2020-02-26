@@ -13,10 +13,17 @@
       <nav class="navbar navbar-inverse">
       <div class="container-fluid">
     <div class="navbar-header" style="padding : 1rem">
+          <button class="btn btn-primary pull-right">
+<%=link_to "All Posts", root_url , class:"fadeIn" %>
+</button>
             <% if !logged_in %>
+            <button class="btn btn-primary pull-right">
               <%=link_to "Sign IN", signin_path , class:"fadeIn" %>
+              </button>
             <% else %>
+            <button class="btn btn-primary pull-right">
               <%=link_to "Sign OUT", signout_path , method: :delete, class:"fadeIn" %>
+              </button>
             <% end %>
             </div>
             </div>
