@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :posts
 
   def self.digest(string)
+    return nil if string.nil?
+
     Digest::SHA1.hexdigest string
   end
 
